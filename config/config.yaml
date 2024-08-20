@@ -1,0 +1,11 @@
+env: 'local'
+url_size: 5
+database:
+  dialect: 'postgres'
+  host: 'db'
+  port: '5432'
+  name: 'url-test'
+  username: 'postgres'
+  migration: true
+server:
+  address: 'localhost:8080'

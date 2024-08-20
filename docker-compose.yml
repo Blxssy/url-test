@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    restart: always
+    image: postgres:latest
+    container_name: url-test-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: url-test
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - "5433:5432"
+
+  backend:
+    build: .
+    command: ./main -d
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_PASSWORD=postgres
