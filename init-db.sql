@@ -1,1 +1,1 @@
-CREATE DATABASE url-test;
+CREATE DATABASE "url-test";
