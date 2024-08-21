@@ -5,8 +5,19 @@ import (
 	"github.com/Blxssy/url-test/internal/container"
 	"github.com/Blxssy/url-test/internal/logger"
 	"github.com/Blxssy/url-test/internal/storage"
+	"github.com/gin-gonic/gin"
 	"log/slog"
 )
+
+func PrepareForControllerTest() (*gin.Engine, container.Container) {
+	g := gin.New()
+
+	cfg := createConfig()
+	logger := initTestLogger()
+	ctr := initContainer(cfg, logger)
+
+	return g, ctr
+}
 
 func PrepareForServiceTest() container.Container {
 	conf := createConfig()

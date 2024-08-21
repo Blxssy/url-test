@@ -1,16 +1,17 @@
 package main
 
 import (
+	"log"
+	"log/slog"
+	"os"
+
 	"github.com/Blxssy/url-test/internal/config"
-	container "github.com/Blxssy/url-test/internal/container"
+	container2 "github.com/Blxssy/url-test/internal/container"
 	"github.com/Blxssy/url-test/internal/logger"
 	"github.com/Blxssy/url-test/internal/router"
 	"github.com/Blxssy/url-test/internal/storage"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"log"
-	"log/slog"
-	"os"
 )
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 
 	mainStorage := storage.NewStorage(log, cfg)
 
-	container := container.NewContainer(mainStorage, cfg, log, cfg.Env)
+	container := container2.NewContainer(mainStorage, cfg, log, cfg.Env)
 
 	r := gin.Default()
 	router.InitRoutes(r, container)
