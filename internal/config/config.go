@@ -28,7 +28,7 @@ type Database struct {
 }
 
 func InitConfig() *Config {
-	configPath := os.Getenv("ConfigPath")
+	configPath := os.Getenv("CONFIG_PATH")
 
 	var cfg Config
 
