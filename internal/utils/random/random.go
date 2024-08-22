@@ -1,11 +1,9 @@
 package random
 
 import (
-	"math/rand"
-	"time"
+	"crypto/rand"
+	"math/big"
 )
-
-var rnd = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func NewRandomString(size int) string {
 	chars := []rune("abcdefghijklmnopqrstuvwxyz" +
@@ -14,7 +12,8 @@ func NewRandomString(size int) string {
 
 	b := make([]rune, size)
 	for i := range b {
-		b[i] = chars[rnd.Intn(len(chars))]
+		num, _ := rand.Int(rand.Reader, big.NewInt(int64(len(chars))))
+		b[i] = chars[num.Int64()]
 	}
 
 	return string(b)
